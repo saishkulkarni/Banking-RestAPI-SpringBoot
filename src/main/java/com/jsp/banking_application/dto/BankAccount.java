@@ -22,3 +22,4 @@ double banklimit;
 double amount;
 boolean status;
 }
+  
