@@ -73,4 +73,22 @@ public class ManagementService {
 		
 		return structure;
 	}
+
+	public ResponseStructure<BankAccount> changeStatus(long acno) {
+		ResponseStructure<BankAccount> structure=new ResponseStructure<BankAccount>();
+		
+		Optional<BankAccount> optional=repository2.findById(acno);
+		BankAccount account=optional.get();
+		if(account.isStatus())
+		{
+			account.setStatus(false);
+		}
+		else{
+		account.setStatus(true);
+		}
+		structure.setCode(HttpStatus.OK.value());
+		structure.setMessage("Changed Status Success");
+		structure.setData(repository2.save(account));
+		return structure;
+	}
 }
